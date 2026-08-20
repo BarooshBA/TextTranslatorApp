@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">תרגום אופליין</string>
+    <string name="action_translate">תרגום</string>
+    <string name="title_manage_models">ניהול מילונים אופליין</string>
+    <string name="subtitle_manage_models">הורד חבילות שפה לתרגום מקומי ללא חיבור לאינטרנט</string>
+    <string name="auto_detect">זיהוי אוטומטי</string>
+    <string name="btn_replace">החלף טקסט מסומן</string>
+    <string name="btn_copy">העתק תרגום</string>
+    <string name="btn_close">סגור</string>
+    <string name="translating">מתרגם...</string>
+    <string name="copied">התרגום הועתק ללוח</string>
+    <string name="model_not_downloaded">מילון אינו מותקן (פתח את האפליקציה להורדה)</string>
+    <string name="download">הורד</string>
+    <string name="downloaded">מותקן</string>
+    <string name="downloading">מוריד...</string>
+    <string name="delete">מחק</string>
+</resources>

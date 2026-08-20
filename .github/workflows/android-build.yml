@@ -19,12 +19,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Gradle Wrapper
-        run: |
-          gradle wrapper --gradle-version 8.4
-          chmod +x gradlew
-
-      - name: Fix Build Configuration
+      - name: Generate Gradle Settings & Build Files
         run: |
           cat << 'EOF' > settings.gradle.kts
           pluginManagement {
@@ -46,15 +41,9 @@ jobs:
           EOF
 
           cat << 'EOF' > build.gradle.kts
-          buildscript {
-              repositories {
-                  google()
-                  mavenCentral()
-              }
-              dependencies {
-                  classpath("com.android.tools.build:gradle:8.2.2")
-                  classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22")
-              }
+          plugins {
+              id("com.android.application") version "8.1.4" apply false
+              id("org.jetbrains.kotlin.android") version "1.9.22" apply false
           }
           EOF
 
@@ -103,8 +92,8 @@ jobs:
           }
           EOF
 
-      - name: Build Debug APK
-        run: ./gradlew assembleDebug --stacktrace
+      - name: Build APK with System Gradle
+        run: gradle assembleDebug --stacktrace
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4

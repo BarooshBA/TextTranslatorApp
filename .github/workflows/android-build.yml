@@ -98,7 +98,7 @@ jobs:
           EOF
 
       - name: Build APK Clean
-        run: gradle assembleDebug
+        run: gradle assembleDebug -Pandroid.useAndroidX=true -Pandroid.nonTransitiveRClass=true
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4

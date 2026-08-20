@@ -19,7 +19,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Generate Gradle Settings & Build Files
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Generate Build Configurations
         run: |
           cat << 'EOF' > settings.gradle.kts
           pluginManagement {
@@ -92,8 +95,8 @@ jobs:
           }
           EOF
 
-      - name: Build APK with System Gradle
-        run: gradle assembleDebug --stacktrace
+      - name: Build APK Clean
+        run: gradle assembleDebug --quiet || gradle assembleDebug
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4

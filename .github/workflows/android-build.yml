@@ -24,6 +24,11 @@ jobs:
         with:
           gradle-version: '8.4'
 
+      - name: Fix Missing Icons in Manifest
+        run: |
+          sed -i 's/android:icon="@mipmap\/ic_launcher"//g' app/src/main/AndroidManifest.xml || true
+          sed -i 's/android:roundIcon="@mipmap\/ic_launcher_round"//g' app/src/main/AndroidManifest.xml || true
+
       - name: Generate Build Configurations
         run: |
           cat << 'EOF' > settings.gradle.kts

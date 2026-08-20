@@ -24,12 +24,13 @@ jobs:
         with:
           gradle-version: '8.4'
 
-      - name: Fix Missing Icons and Styles
+      - name: Fix Icons, Styles and ML Kit Code API
         run: |
           sed -i 's/android:icon="@mipmap\/ic_launcher"//g' app/src/main/AndroidManifest.xml || true
           sed -i 's/android:roundIcon="@mipmap\/ic_launcher_round"//g' app/src/main/AndroidManifest.xml || true
           sed -i 's/Widget.Material3.Button.Tonal/Widget.Material3.Button.TonalButton/g' app/src/main/res/layout/activity_process_text.xml || true
           sed -i 's/Widget.Material3.Button.Tonal/Widget.Material3.Button.TonalButton/g' app/src/main/res/layout/item_language_model.xml || true
+          sed -i 's/getModels(TranslateRemoteModel::class.java)/getDownloadedModels(TranslateRemoteModel::class.java)/g' app/src/main/java/com/translator/offline/MainActivity.kt || true
 
       - name: Generate Build Configurations
         run: |
